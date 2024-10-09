@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pythagoras Theorem Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #4CAF50;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input {
+      padding: 10px;
+      width: 80%;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pythagoras Calculator</h1>
+    <form id="pythagoras-form">
+      <label for="a">Enter a</label>
+      <input type="number" id="a" placeholder="Enter side a" />
+
+      <label for="b">Enter b</label>
+      <input type="number" id="b" placeholder="Enter side b" />
+
+      <label for="c">Enter c</label>
+      <input type="number" id="c" placeholder="Enter side c" />
+
+      <button type="button" onclick="calculate()">Calculate</button>
+    </form>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculate() {
+      const a = parseFloat(document.getElementById('a').value);
+      const b = parseFloat(document.getElementById('b').value);
+      const c = parseFloat(document.getElementById('c').value);
+      let resultText = '';
+
+      if (!isNaN(a) && !isNaN(b) && isNaN(c)) {
+        // Calculate c
+        const c = Math.sqrt(a ** 2 + b ** 2).toFixed(2);
+        resultText = `c is: ${c}`;
+      } else if (!isNaN(a) && isNaN(b) && !isNaN(c)) {
+        // Calculate b
+        const b = Math.sqrt(c ** 2 - a ** 2).toFixed(2);
+        resultText = `b is: ${b}`;
+      } else if (isNaN(a) && !isNaN(b) && !isNaN(c)) {
+        // Calculate a
+        const a = Math.sqrt(c ** 2 - b ** 2).toFixed(2);
+        resultText = `a is: ${a}`;
+      } else {
+        resultText = 'Please provide exactly two values!';
+      }
+
+      document.getElementById('result').textContent = resultText;
+    }
+  </script>
+</body>
+</html>
+
